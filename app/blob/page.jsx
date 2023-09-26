@@ -1,5 +1,6 @@
 'use client'
 
+import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import dynamic from 'next/dynamic'
 
 const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })
@@ -32,8 +33,11 @@ export default function Page() {
       </div>
 
       <View className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+        <EffectComposer disableNormalPass multisampling={0}>
+          <Bloom luminanceThreshold={0.9} radius={0.84} intensity={0.605} levels={9} mipmapBlur />
+        </EffectComposer>
         <Blob />
-        <Common />
+        <Common color={'black'} />
       </View>
     </>
   )

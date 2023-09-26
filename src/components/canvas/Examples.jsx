@@ -16,9 +16,10 @@ export const Blob = ({ route = '/', ...props }) => {
       onClick={() => router.push(route)}
       onPointerOver={() => hover(true)}
       onPointerOut={() => hover(false)}
-      {...props}>
+      {...props}
+    >
       <sphereGeometry args={[1, 64, 64]} />
-      <MeshDistortMaterial roughness={0} color={hovered ? 'hotpink' : '#1fb2f5'} />
+      <MeshDistortMaterial roughness={0} toneMapped={false} color={hovered ? new THREE.Color(10, 0, 0) : '#1fb2f5'} />
     </mesh>
   )
 }
